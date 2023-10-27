@@ -39,8 +39,6 @@ public class Health
 
     private void Die()
     {
-        // send death event to unit with their unit id so that they can do special things when they die
-        
-        // destroy this maybe
+        EventManager.OnUnitDie.Invoke(unitID);
     }
 }

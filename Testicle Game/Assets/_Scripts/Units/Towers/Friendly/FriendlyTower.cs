@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class FriendlyTower : Tower, IFriendly, IDamagable, ITargetter, ITargetable
 {
     public Health HealthComponent { get; set; }
 
-    public void Die()
+    public override void Die(int unitID)
     {
-        // become NoTower
+        base.Die(unitID);
+        
+        // become NoTower maybe send event for that
     }
-    
 
 }

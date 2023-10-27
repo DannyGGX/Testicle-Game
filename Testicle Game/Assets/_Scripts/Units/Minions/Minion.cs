@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minion : MonoBehaviour, IDamagable, ITargetter, ITargetable
+public abstract class Minion : Unit, IDamagable, ITargetter, ITargetable
 {
     public Health HealthComponent { get; set; }
-
-    public void Die()
+    public override void Die(int unitID)
     {
+        base.Die(unitID);
+        
         
     }
+
+    
+
 }

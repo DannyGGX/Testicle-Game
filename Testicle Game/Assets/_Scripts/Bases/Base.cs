@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Base : MonoBehaviour, ITargetable, IDamagable
+public class Base : Unit, ITargetable, IDamagable
 {
     [field: SerializeField] public Health HealthComponent { get; set; }
-
-    public void Die()
+    public override void Die(int unitID)
     {
+        base.Die(unitID);
+        
         
     }
-
 }
