@@ -1,18 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerGunRotation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Camera mainCam;
+    private Quaternion rotation;
+    private const float ROTATION_OFFSET = -90;
+
+    private void Awake()
     {
-        
+        mainCam = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+
+        rotation = GetRotationInput();
+    }
+
+    private void FixedUpdate()
+    {
+        RotateToMouse();
+    }
+    private Quaternion GetRotationInput()
+    {
+        Vector2 direction = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + ROTATION_OFFSET;
+        return Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+    
+    private void RotateToMouse()
+    {
+        transform.rotation = rotation;
     }
 }
