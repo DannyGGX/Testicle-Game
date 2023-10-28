@@ -26,9 +26,16 @@ public class PlayerGun : MonoBehaviour
     {
         if (CheckIfEnoughTimePassed() && Input.GetButton("Fire1"))
         {
+            this.Log("Fire input");
             Shoot();
             SetNextFireTime();
         }
+
+        // if (Input.GetButtonDown("Fire1"))
+        // {
+        //     this.Log("Fire input");
+        //     Shoot();
+        // }
     }
 
     private bool CheckIfEnoughTimePassed()
@@ -43,6 +50,6 @@ public class PlayerGun : MonoBehaviour
     private void Shoot()
     {
         Projectile firedBullet = playerBullets.GetObject();
-        firedBullet.Initialize(playerBullets, 10, TargetTypes.Enemy);
+        firedBullet.Initialize(playerBullets, 5, TargetTypes.Enemy);
     }
 }

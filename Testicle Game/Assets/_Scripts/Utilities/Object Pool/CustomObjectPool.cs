@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CustomObjectPool<T> where T : MonoBehaviour
 {
-    private Queue<T> availableObjects = new Queue<T>();
+    private Queue<T> availableObjects;
     private T prefab;
     
     public int PoolSize;
@@ -17,10 +17,11 @@ public class CustomObjectPool<T> where T : MonoBehaviour
         this.parentObject = parentObject;
         PoolSize = initialSize;
         this.IsPoolSizeCapped = isPoolSizeCapped;
+        availableObjects = new Queue<T>();
         
         for (int i = 0; i < initialSize; i++)
         {
-            T obj = Object.Instantiate(prefab, this.parentObject);
+            T obj = GameObject.Instantiate(prefab, this.parentObject);
             obj.gameObject.SetActive(false);
             availableObjects.Enqueue(obj);
         }
@@ -33,7 +34,7 @@ public class CustomObjectPool<T> where T : MonoBehaviour
             if (IsPoolSizeCapped)
                 return null;
             
-            T obj = Object.Instantiate(prefab, parentObject);
+            T obj = GameObject.Instantiate(prefab, parentObject);
             obj.gameObject.SetActive(true);
             PoolSize++;
             return obj;

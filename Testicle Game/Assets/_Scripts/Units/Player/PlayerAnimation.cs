@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Animator)), RequireComponent(typeof(SpriteRenderer))]
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     [SerializeField] private Rigidbody2D rigidBody;
     
     private const string animatorParameterName = "State";
@@ -20,6 +21,7 @@ public class PlayerAnimation : MonoBehaviour
         EventManager.OnPlayerRevive.Subscribe(Revive);
         
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnDisable()
@@ -34,6 +36,7 @@ public class PlayerAnimation : MonoBehaviour
 
         if (rigidBody.velocity.magnitude > 0)
         {
+            spriteRenderer.flipX = rigidBody.velocity.x < 0;
             PlayRun();
         }
         else
@@ -60,6 +63,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Revive()
     {
+        
         isDead = false;
     }
     

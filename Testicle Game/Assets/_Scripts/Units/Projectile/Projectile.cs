@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
     {
         Invoke(nameof(DisableProjectile), maxActiveDuration);
         rigidBody = GetComponent<Rigidbody2D>();
-        ApplyBulletMovement();
+        //ApplyBulletMovement();
     }
     private void OnDisable()
     {
@@ -29,6 +29,8 @@ public class Projectile : MonoBehaviour
         this.bulletPool = bulletPool;
         projectileSpeed = speed;
         this.targetTypes = targetTypes;
+        
+        ApplyBulletMovement();
     }
 
     private void ApplyBulletMovement()
@@ -38,6 +40,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        this.Log("Bullet collided");
         if (IsObjectATarget(other))
         {
             // Damage target
