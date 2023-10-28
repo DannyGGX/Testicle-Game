@@ -11,7 +11,10 @@ public static class EventManager
 {
     public static readonly Event OnTestEventTriggered = new Event();
 
-    public static readonly Event<int> OnWaypointPassed = new Event<int>(); // int: racer ID
 
-    public static Event<int> OnUnitDie = new();
+    public static Event<int> OnUnitDie { get; set; } = new();
+    
+    // Player Events
+    public static Event OnPlayerDie { get; set; } = new();
+    public static Event OnPlayerRevive { get; set; } = new();
 }
