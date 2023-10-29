@@ -10,6 +10,7 @@ public class PlayerDeathTimeOut : MonoBehaviour
     
     private void OnEnable()
     {
+        ui.HideUI();
         EventManager.OnPlayerDie.Subscribe(PlayerDie);
     }
 

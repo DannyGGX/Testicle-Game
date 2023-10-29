@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
     private float projectileSpeed = 10;
     private float maxActiveDuration = 2;
     private Rigidbody2D rigidBody;
+    private Transform firePoint;
+    
     private void OnEnable()
     {
         Invoke(nameof(DisableProjectile), maxActiveDuration);
@@ -24,23 +26,24 @@ public class Projectile : MonoBehaviour
         CancelInvoke(nameof(DisableProjectile));
     }
 
-    public virtual void Initialize(CustomObjectPool<Projectile> bulletPool, int speed, params TargetTypes[] targetTypes)
+    public virtual void Initialize(CustomObjectPool<Projectile> bulletPool, Transform firePoint, int speed, params TargetTypes[] targetTypes)
     {
         this.bulletPool = bulletPool;
         projectileSpeed = speed;
         this.targetTypes = targetTypes;
+        transform.position = firePoint.position;
+        this.firePoint = firePoint;
         
         ApplyBulletMovement();
     }
 
     private void ApplyBulletMovement()
     {
-        rigidBody.velocity = projectileSpeed * transform.up;
+        rigidBody.velocity = projectileSpeed * firePoint.up;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        this.Log("Bullet collided");
         if (IsObjectATarget(other))
         {
             // Damage target

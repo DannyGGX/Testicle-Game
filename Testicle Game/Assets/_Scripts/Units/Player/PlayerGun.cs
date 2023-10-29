@@ -10,6 +10,7 @@ public class PlayerGun : MonoBehaviour
     [SerializeField, Tooltip("Bullets per second")] private float fireRate;
 
     [SerializeField] private Projectile playerBulletPrefab;
+    [SerializeField, Tooltip("To organise bullet clones")] private Transform playerBulletPool;
 
     private CustomObjectPool<Projectile> playerBullets;
     
@@ -19,14 +20,13 @@ public class PlayerGun : MonoBehaviour
 
     private void Awake()
     {
-        playerBullets = new CustomObjectPool<Projectile>(playerBulletPrefab, transform, 15);
+        playerBullets = new CustomObjectPool<Projectile>(playerBulletPrefab, playerBulletPool, 10, true);
     }
 
     void Update()
     {
         if (CheckIfEnoughTimePassed() && Input.GetButton("Fire1"))
         {
-            this.Log("Fire input");
             Shoot();
             SetNextFireTime();
         }
@@ -50,6 +50,6 @@ public class PlayerGun : MonoBehaviour
     private void Shoot()
     {
         Projectile firedBullet = playerBullets.GetObject();
-        firedBullet.Initialize(playerBullets, 5, TargetTypes.Enemy);
+        firedBullet.Initialize(playerBullets, firePoint, 15, TargetTypes.Enemy);
     }
 }
