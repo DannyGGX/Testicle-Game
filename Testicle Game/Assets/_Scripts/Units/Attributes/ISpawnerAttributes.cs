@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RayWeapon : MonoBehaviour
+public class ISpawnerAttributes : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

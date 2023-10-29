@@ -16,7 +16,7 @@ public class PlayerDeathTimeOutUI
 
     private string FormatDisplay(int seconds)
     {
-        return $"{seconds} seconds till revive";
+        return $"You'll be revived in:\n{seconds} seconds";
     }
 
     public void HideUI()

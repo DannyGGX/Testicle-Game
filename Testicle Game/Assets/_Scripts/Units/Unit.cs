@@ -28,7 +28,7 @@ public abstract class Unit : MonoBehaviour, IDamagable
         return UnitID == unitID;
     }
 
-    public Health HealthComponent { get; set; }
+    [field: SerializeField] public Health HealthComponent { get; set; }
     
     public virtual void Die(int unitID)
     {

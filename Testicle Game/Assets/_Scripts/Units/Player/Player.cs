@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))] // For enemies to deal damage
 public class Player : Unit, IFriendly
 {
     private void OnEnable()
@@ -18,6 +19,8 @@ public class Player : Unit, IFriendly
 
     [SerializeField] private PlayerGunRotation _playerGunRotation;
     [SerializeField] private PlayerGun _playerGun;
+    
+    
 
     public override void Die(int unitID)
     {
