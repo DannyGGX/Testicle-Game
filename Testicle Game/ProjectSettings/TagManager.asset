@@ -43,3 +43,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 402460547
+    locked: 0
+  - name: Empty Tower
+    uniqueID: 67934661
+    locked: 0
+  - name: Walls
+    uniqueID: 1697998445
+    locked: 0
+  - name: Minions
+    uniqueID: 652841013
+    locked: 0
+  - name: Player
+    uniqueID: 2778641819
+    locked: 0
+  - name: Structures
+    uniqueID: 2204059687
+    locked: 0
+  - name: Bullets
+    uniqueID: 3575951929
+    locked: 0
+  - name: UI
+    uniqueID: 3212855975
+    locked: 0

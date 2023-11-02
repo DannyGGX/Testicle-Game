@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Base : Unit, ITargetable, IDamagable
+public class Base : Unit
 {
-    [field: SerializeField] public Health HealthComponent { get; set; }
     public override void Die(int unitID)
     {
         base.Die(unitID);

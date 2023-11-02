@@ -2,28 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// There can be different health bar colours for friendly and enemy
 [System.Serializable]
 public class Health
 {
     [SerializeField] private HealthBar ui; // prefab
+    [SerializeField] private int maxHealth = 100;
 
     private int unitID;
-    private int maxHealth;
     private int currentHealth;
-    private Transform barDisplayPoint;
 
-    public Health(int unitID, int maxHealth, Transform barDisplayPoint)
+    public void InitializeHealthBar(int unitID)
     {
         this.unitID = unitID;
-        this.maxHealth = maxHealth;
-        currentHealth = this.maxHealth;
-        this.barDisplayPoint = barDisplayPoint;
-    }
+        currentHealth = maxHealth;
 
-    private void InitializeHealthBar()
-    {
-        ui.InitializeHealthBar(maxHealth, barDisplayPoint);
+        ui.InitializeHealthBar(maxHealth);
     }
 
     public void TakeDamage(int damageAmount)
@@ -37,8 +30,19 @@ public class Health
         ui.UpdateUI(currentHealth);
     }
 
+    public void Heal(int healAmount)
+    {
+        currentHealth += healAmount;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        ui.UpdateUI(currentHealth);
+    }
+
     private void Die()
     {
         EventManager.OnUnitDie.Invoke(unitID);
     }
+
 }

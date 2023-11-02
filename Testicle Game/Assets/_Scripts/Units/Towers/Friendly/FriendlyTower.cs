@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class FriendlyTower : Tower, IFriendly, IDamagable, ITargetter, ITargetable
+public abstract class FriendlyTower : Tower, IFriendly, ITargetter
 {
-    public Health HealthComponent { get; set; }
-
     public override void Die(int unitID)
     {
         base.Die(unitID);

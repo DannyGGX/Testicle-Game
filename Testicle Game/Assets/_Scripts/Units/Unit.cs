@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Unit : MonoBehaviour, IDamagable
+public abstract class Unit : MonoBehaviour, IDamagable, ITargetable
 {
     public int UnitID { get; set; }
 
@@ -10,16 +10,19 @@ public abstract class Unit : MonoBehaviour, IDamagable
     {
         UnitID = GetInstanceID();
     }
-    private void OnEnable()
+    public virtual void BaseOnEnable()
     {
         EventManager.OnUnitDie.Subscribe(Die);
+        
+        HealthComponent?.InitializeHealthBar(UnitID);
     }
 
-    private void OnDisable()
+    public virtual void BaseOnDisable()
     {
         EventManager.OnUnitDie.Unsubscribe(Die);
     }
-    private void Awake()
+
+    public virtual void BaseAwake()
     {
         SetUnitID();
     }

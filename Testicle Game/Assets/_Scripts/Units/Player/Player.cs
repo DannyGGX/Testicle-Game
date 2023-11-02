@@ -1,26 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))] // For enemies to deal damage
+[RequireComponent(typeof(Collider2D))] // For enemies to deal damage
 public class Player : Unit, IFriendly
 {
-    private void OnEnable()
-    {
-        EventManager.OnPlayerRevive.Subscribe(Revive);
-    }
-
-    private void OnDisable()
-    {
-        EventManager.OnPlayerRevive.Unsubscribe(Revive);
-    }
-
     [SerializeField] private PlayerMovement _playerMovement;
 
     [SerializeField] private PlayerGunRotation _playerGunRotation;
     [SerializeField] private PlayerGun _playerGun;
     
-    
+    private void OnEnable()
+    {
+        BaseOnEnable();
+        EventManager.OnPlayerRevive.Subscribe(Revive);
+    }
+    private void OnDisable()
+    {
+        BaseOnDisable();
+        EventManager.OnPlayerRevive.Unsubscribe(Revive);
+    }
+
+    private void Awake()
+    {
+        BaseAwake();
+    }
 
     public override void Die(int unitID)
     {

@@ -9,6 +9,6 @@ public class TowerLocation : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        currentTower = gameObject.AddComponent<NoTower>();
+        //currentTower = gameObject.AddComponent<NoTower>();
     }
 }
