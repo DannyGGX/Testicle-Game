@@ -1,18 +1,48 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeEnemy : Minion, IEnemy, IMeleeFighter
 {
-    public void SetEnemyTag()
+    [Header("NavMesh Properties")]
+    [SerializeField] private float stoppingDistance = 2;
+    [field: Space]
+    [field: SerializeField] public MeleeWeapon MeleeWeapon { get; set; }
+    
+    
+    private void Awake()
     {
-        tag = IEnemy.EnemyTag;
+        BaseAwake();
+        SetMeleeMinionStats();
+        SetEnemyTagAndLayer();
     }
 
-    public MeleeWeapon MeleeWeapon { get; set; }
+    private void OnEnable()
+    {
+        BaseOnEnable();
+    }
+
+    private void OnDisable()
+    {
+        BaseOnDisable();
+    }
+
+    public void SetEnemyTagAndLayer()
+    {
+        tag = IEnemy.EnemyTag;
+        gameObject.layer = IEnemy.EnemyLayer;
+    }
+
+    private void SetMeleeMinionStats()
+    {
+        agent.stoppingDistance = stoppingDistance;
+        
+    }
+    
+    
     public void InitializeMeleeWeapon()
     {
-        MeleeWeapon = gameObject.AddComponent<MeleeWeapon>();
         //MeleeWeapon.Initialize();
     }
 

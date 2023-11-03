@@ -4,29 +4,30 @@ using UnityEngine;
 
 public abstract class Unit : MonoBehaviour, IDamagable, ITargetable
 {
-    public int UnitID { get; set; }
+    protected int UnitID { get; set; }
 
     private void SetUnitID()
     {
         UnitID = GetInstanceID();
     }
-    public virtual void BaseOnEnable()
+
+    protected virtual void BaseOnEnable()
     {
         EventManager.OnUnitDie.Subscribe(Die);
         
         HealthComponent?.InitializeHealthBar(UnitID);
     }
 
-    public virtual void BaseOnDisable()
+    protected virtual void BaseOnDisable()
     {
         EventManager.OnUnitDie.Unsubscribe(Die);
     }
 
-    public virtual void BaseAwake()
+    protected virtual void BaseAwake()
     {
         SetUnitID();
     }
-    public bool CheckForIDMatch(int unitID)
+    protected bool CheckForIDMatch(int unitID)
     {
         return UnitID == unitID;
     }

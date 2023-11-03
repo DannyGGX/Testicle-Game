@@ -31,4 +31,6 @@ public class HealthBar : MonoBehaviour
     {
         wholeHealthBarUI.SetActive(false);
     }
+    
+    
 }

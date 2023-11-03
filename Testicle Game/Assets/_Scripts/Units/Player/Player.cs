@@ -10,10 +10,11 @@ public class Player : Unit, IFriendly
 
     [SerializeField] private PlayerGunRotation _playerGunRotation;
     [SerializeField] private PlayerGun _playerGun;
-    
+        
     private void OnEnable()
     {
         BaseOnEnable();
+        
         EventManager.OnPlayerRevive.Subscribe(Revive);
     }
     private void OnDisable()

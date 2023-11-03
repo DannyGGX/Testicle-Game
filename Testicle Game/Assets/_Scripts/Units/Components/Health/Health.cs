@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
 [System.Serializable]
@@ -38,6 +39,11 @@ public class Health
             currentHealth = maxHealth;
         }
         ui.UpdateUI(currentHealth);
+    }
+
+    public void HealToFull()
+    {
+        //Start coroutine in ui.
     }
 
     private void Die()
