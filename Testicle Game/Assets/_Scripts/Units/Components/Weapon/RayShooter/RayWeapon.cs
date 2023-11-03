@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class RayWeapon : Gun
 {
-    
+    public override void Attack()
+    {
+        
+    }
 }

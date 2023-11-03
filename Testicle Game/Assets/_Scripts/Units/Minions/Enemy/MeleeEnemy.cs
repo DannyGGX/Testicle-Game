@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemy : Minion, IEnemy, IMeleeFighter
+public class MeleeEnemy : Minion, IEnemy
 {
     [Header("NavMesh Properties")]
     [SerializeField] private float stoppingDistance = 2;
-    [field: Space]
-    [field: SerializeField] public MeleeWeapon MeleeWeapon { get; set; }
     
     
     private void Awake()
@@ -38,16 +36,5 @@ public class MeleeEnemy : Minion, IEnemy, IMeleeFighter
     {
         agent.stoppingDistance = stoppingDistance;
         
-    }
-    
-    
-    public void InitializeMeleeWeapon()
-    {
-        //MeleeWeapon.Initialize();
-    }
-
-    public void Attack()
-    {
-        MeleeWeapon.Attack();
     }
 }

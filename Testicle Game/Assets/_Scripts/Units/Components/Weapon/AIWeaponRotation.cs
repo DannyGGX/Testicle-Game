@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AIWeaponRotation : MonoBehaviour
 {
+    [SerializeField] protected Weapon weapon;
+    
     private Transform currentTarget;
     private Quaternion rotation;
     private const float ROTATION_OFFSET = -90;
@@ -24,5 +26,13 @@ public class AIWeaponRotation : MonoBehaviour
     private void FixedUpdate()
     {
         transform.rotation = GetRotationToTarget(currentTarget.position);
+        Attack();
     }
+
+    public void Attack()
+    {
+        weapon.Attack();
+        
+    }
+
 }

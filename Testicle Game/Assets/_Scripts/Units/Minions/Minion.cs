@@ -11,6 +11,7 @@ public abstract class Minion : Unit, ITargetter
     [SerializeField] protected WeaponRange attackRange;
     [SerializeField] protected AIWeaponRotation weaponRotation;
     
+    
     public override void Die(int unitID)
     {
         base.Die(unitID);
@@ -23,6 +24,8 @@ public abstract class Minion : Unit, ITargetter
         base.BaseAwake();
         agent = GetComponent<NavMeshAgent>();
         ConfigureNavMeshAgent();
+        
+        DisableWeapon();
     }
     private void ConfigureNavMeshAgent()
     {
@@ -35,7 +38,15 @@ public abstract class Minion : Unit, ITargetter
         agent.SetDestination(target);
     }
 
-    
+    public void DisableWeapon()
+    {
+        weaponRotation.enabled = false;
+    }
+
+    public void EnableWeapon()
+    {
+        
+    }
 
     protected override void BaseOnEnable()
     {
@@ -46,6 +57,15 @@ public abstract class Minion : Unit, ITargetter
     protected override void BaseOnDisable()
     {
         base.BaseOnDisable();
+        
+    }
+
+    private void InitializeWeapon()
+    {
+        
+    }
+    public void Attack()
+    {
         
     }
 }

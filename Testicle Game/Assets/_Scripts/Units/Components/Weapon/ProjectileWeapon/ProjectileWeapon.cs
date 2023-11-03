@@ -9,5 +9,9 @@ public class ProjectileWeapon : Gun
     private Projectile BulletPrefab;
     private CustomObjectPool<Projectile> BulletPool;
     private Transform firePoint;
-    
+
+    public override void Attack()
+    {
+        
+    }
 }

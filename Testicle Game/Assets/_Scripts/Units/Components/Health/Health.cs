@@ -22,6 +22,7 @@ public class Health
 
     public void TakeDamage(int damageAmount)
     {
+        Debug.Log("Take damage");
         currentHealth -= damageAmount;
         if (currentHealth <= 0)
         {

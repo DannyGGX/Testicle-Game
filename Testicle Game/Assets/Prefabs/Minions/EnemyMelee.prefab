@@ -213,8 +213,10 @@ MonoBehaviour:
   <HealthComponent>k__BackingField:
     ui: {fileID: 4641247643208559351}
     maxHealth: 50
+  minionVision: {fileID: 1981960793439377149}
+  attackRange: {fileID: 7551545321792652763}
+  weaponRotation: {fileID: 7702955422298876233}
   stoppingDistance: 2
-  <MeleeWeapon>k__BackingField: {fileID: 8228502051871598645}
 --- !u!1 &5930916421390582648
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7924461304565164621}
   - component: {fileID: 201898090979476892}
+  - component: {fileID: 7551545321792652763}
   m_Layer: 0
   m_Name: MeleeRange
   m_TagString: Untagged
@@ -282,6 +285,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.4
+--- !u!114 &7551545321792652763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5930916421390582648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad57fd1e15c7e744aaaf25b60dc0e56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opponent: 0
+  WeaponRotation: {fileID: 7702955422298876233}
 --- !u!1 &6794745449684888698
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7766248136278895817}
   - component: {fileID: 6412355193344437450}
+  - component: {fileID: 1981960793439377149}
   m_Layer: 0
   m_Name: VisionRange
   m_TagString: Untagged
@@ -349,6 +367,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4.5
+--- !u!114 &1981960793439377149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794745449684888698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a12615c00e7a649af30b75ab979169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opponent: 0
+  minion: {fileID: 8526490203426033816}
+  opponentBase: {fileID: 0}
 --- !u!1 &8936424077027235465
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf62be820386d3e4ab1f28aa331dcfd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 8228502051871598645}
 --- !u!1 &9077725635128708854
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,9 +438,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3621322728256727829}
   - component: {fileID: 1973564468524602761}
-  - component: {fileID: 4714310611782062461}
   - component: {fileID: 2875636293854353168}
   - component: {fileID: 8228502051871598645}
+  - component: {fileID: 8865157900979517068}
   m_Layer: 0
   m_Name: Slash
   m_TagString: Untagged
@@ -470,7 +504,7 @@ SpriteRenderer:
   m_SortingLayerID: -719015367
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7943252054069571966, guid: 610d4011d4443ce43b8dc2a279147510, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e606da8c5aa36f49a9a7f7773a9d792, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -481,27 +515,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4714310611782062461
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9077725635128708854}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ae094d952b3a1b74e9cd02eab28874f6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!58 &2875636293854353168
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -549,6 +562,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa8f97369ba656419acf5c41db644db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponDamage: 20
+  opponent: 0
+  attackDuration: 1
+  isAttackCoroutineRunning: 0
+--- !u!95 &8865157900979517068
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9077725635128708854}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ae094d952b3a1b74e9cd02eab28874f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7403224583959404001
 PrefabInstance:
   m_ObjectHideFlags: 0
