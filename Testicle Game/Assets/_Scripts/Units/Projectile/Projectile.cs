@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public Unit Shooter;
     private TargetTypes[] targetTypes;
     private CustomObjectPool<Projectile> bulletPool;
+    [SerializeField] private int damage = 20;
 
     private float projectileSpeed = 10;
     private float maxActiveDuration = 2;
@@ -19,7 +20,6 @@ public class Projectile : MonoBehaviour
     {
         Invoke(nameof(DisableProjectile), maxActiveDuration);
         rigidBody = GetComponent<Rigidbody2D>();
-        //ApplyBulletMovement();
     }
     private void OnDisable()
     {
@@ -46,7 +46,7 @@ public class Projectile : MonoBehaviour
     {
         if (IsObjectATarget(other))
         {
-            // Damage target
+            other.gameObject.GetComponent<IDamagable>().HealthComponent.TakeDamage(damage);
             // Any other effect
         }
         

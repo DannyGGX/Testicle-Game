@@ -27,7 +27,8 @@ public class MeleeWeapon : Weapon
         //attackDuration = weaponAnimation.clip.length;
         attackWait = new WaitForSeconds(attackDuration);
         spriteRenderer = GetComponent<SpriteRenderer>();
-        DisableColliderAndSpriteRenderer();
+        DisableCollider();
+        spriteRenderer.enabled = false;
     }
 
     
@@ -45,10 +46,10 @@ public class MeleeWeapon : Weapon
         spriteRenderer.enabled = true;
     }
 
-    private void DisableColliderAndSpriteRenderer()
+    private void DisableCollider()
     {
         weaponCollider.enabled = false;
-        spriteRenderer.enabled = false;
+        
     }
 
 
@@ -58,7 +59,7 @@ public class MeleeWeapon : Weapon
         {
             this.Log("Damage target");
             other.GetComponent<IDamagable>().HealthComponent.TakeDamage(weaponDamage);
-            DisableColliderAndSpriteRenderer();
+            DisableCollider();
         }
     }
 
@@ -70,6 +71,8 @@ public class MeleeWeapon : Weapon
         _animator.Play("Slash", -1);
         
         yield return attackWait;
+        
+        spriteRenderer.enabled = false;
         isAttackCoroutineRunning = false;
     }
 }

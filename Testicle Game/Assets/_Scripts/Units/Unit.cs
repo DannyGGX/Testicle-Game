@@ -5,10 +5,11 @@ using UnityEngine;
 public abstract class Unit : MonoBehaviour, IDamagable, ITargetable
 {
     protected int UnitID { get; set; }
+    [field: SerializeField] public Health HealthComponent { get; set; }
 
     private void SetUnitID()
     {
-        UnitID = GetInstanceID();
+        UnitID = gameObject.GetInstanceID();
     }
 
     protected virtual void BaseOnEnable()
@@ -31,8 +32,6 @@ public abstract class Unit : MonoBehaviour, IDamagable, ITargetable
     {
         return UnitID == unitID;
     }
-
-    [field: SerializeField] public Health HealthComponent { get; set; }
     
     public virtual void Die(int unitID)
     {

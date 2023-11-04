@@ -10,12 +10,19 @@ public abstract class Minion : Unit, ITargetter
     [SerializeField] protected Vision minionVision;
     [SerializeField] protected WeaponRange attackRange;
     [SerializeField] protected AIWeaponRotation weaponRotation;
-    
+    [SerializeField] protected CustomObjectPool<Minion> minionPool;
+
+    public void GetMinionPoolReference(CustomObjectPool<Minion> minionPool)
+    {
+        this.minionPool = minionPool;
+    }
     
     public override void Die(int unitID)
     {
         base.Die(unitID);
         
+        if (CheckForIDMatch(unitID) == false)
+            return;
         
     }
 

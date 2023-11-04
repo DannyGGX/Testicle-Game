@@ -32,6 +32,9 @@ public class Player : Unit, IFriendly
     {
         base.Die(unitID);
         
+        if (CheckForIDMatch(unitID) == false)
+            return;
+        
         EventManager.OnPlayerDie.Invoke();
         DisableInput();
     }
