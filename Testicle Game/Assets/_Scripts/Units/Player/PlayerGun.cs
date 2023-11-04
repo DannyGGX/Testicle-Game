@@ -49,7 +49,7 @@ public class PlayerGun : MonoBehaviour
 
     private void Shoot()
     {
-        Projectile firedBullet = playerBullets.GetObject();
+        Projectile firedBullet = playerBullets.SpawnObject();
         firedBullet.Initialize(playerBullets, firePoint, 15, TargetTypes.Enemy);
     }
 }

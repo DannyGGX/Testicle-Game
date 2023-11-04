@@ -6,14 +6,16 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class Minion : Unit, ITargetter
 {
-    protected NavMeshAgent agent;
     [SerializeField] protected Vision minionVision;
     [SerializeField] protected WeaponRange attackRange;
     [SerializeField] protected AIWeaponRotation weaponRotation;
-    [SerializeField] protected CustomObjectPool<Minion> minionPool;
+    
+    protected NavMeshAgent agent;
+    private CustomObjectPool<Minion> minionPool;
 
-    public void GetMinionPoolReference(CustomObjectPool<Minion> minionPool)
+    public void Initialize(CustomObjectPool<Minion> minionPool, Transform opponentBase)
     {
+        minionVision.Initialize(opponentBase);
         this.minionPool = minionPool;
     }
     
@@ -24,6 +26,7 @@ public abstract class Minion : Unit, ITargetter
         if (CheckForIDMatch(unitID) == false)
             return;
         
+        minionPool?.ReturnObject(this);
     }
 
     protected override void BaseAwake()

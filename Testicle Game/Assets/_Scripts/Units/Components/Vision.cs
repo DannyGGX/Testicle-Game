@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
@@ -11,9 +12,18 @@ public class Vision : MonoBehaviour
     [SerializeField] private Minion minion;
     [SerializeField] private Transform opponentBase;
     private Transform currentTarget; // equal to opponent base or opponent in vision
-    
+
     private void Start()
     {
+        if (opponentBase != null) // if minion is in scene and not spawned from spawner.
+        {
+            Initialize(opponentBase);
+        }
+    }
+
+    public void Initialize(Transform opponentBase)
+    {
+        this.opponentBase = opponentBase;
         currentTarget = opponentBase;
         SetTargetToOpponentBase();
     }

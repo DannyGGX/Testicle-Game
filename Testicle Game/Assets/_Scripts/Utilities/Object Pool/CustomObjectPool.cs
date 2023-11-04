@@ -27,7 +27,7 @@ public class CustomObjectPool<T> where T : MonoBehaviour
         }
     }
 
-    public T GetObject()
+    public T SpawnObject()
     {
         if (availableObjects.Count == 0)
         {
@@ -42,6 +42,27 @@ public class CustomObjectPool<T> where T : MonoBehaviour
 
         T pooledObject = availableObjects.Dequeue();
         pooledObject.gameObject.SetActive(true);
+        return pooledObject;
+    }
+    
+    public T SpawnObject(Vector3 position, Quaternion rotation)
+    {
+        if (availableObjects.Count == 0)
+        {
+            if (IsPoolSizeCapped)
+                return null;
+            
+            T obj = GameObject.Instantiate(prefab, position, rotation, parentObject);
+            obj.gameObject.SetActive(true);
+            PoolSize++;
+            return obj;
+        }
+
+        T pooledObject = availableObjects.Dequeue();
+        pooledObject.gameObject.SetActive(true);
+        Transform objectTransform = pooledObject.gameObject.transform;
+        objectTransform.position = position;
+        objectTransform.rotation = rotation;
         return pooledObject;
     }
 
